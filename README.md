@@ -28,3 +28,16 @@ To stop it:
 ./stop_tails_vm.sh
 
 DO NOT JUST POWER OFF THE VM if you do then Github will still think you are using it untill you turn the tunnel off by this command or you run out of codespace time
+
+## Extra stuff for modding
+
+There are 2 programs that work together to run this
+noVNC - port 6080 (the Browser)
+QEMU - port 5900 (the VM)
+
+QEMU transmits itself on 5900 and noVNC picks that up on 6080
+
+iso_download.sh just installs the iso and the required packages
+you can change the iso if you want its just the name will have to be registered in the VM
+
+feel free to mod it how you like
