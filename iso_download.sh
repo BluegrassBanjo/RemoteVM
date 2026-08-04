@@ -16,5 +16,6 @@ fi
 wget -O "$ISO_PATH" "$URL"
 echo "Downloaded Tails ISO to $ISO_PATH"
 
-sudo apt update && sudo apt install -y qemu-utils && sudo apt install -f websockify
-qemu-img create -f qcow2 /workspaces/RemoteVM/images/disk.qcow2 20G
+# some random packages that are needed for running vm
+sudo apt update && sudo apt install -y qemu-utils && sudo apt install -f websockify && sudo apt install qemu-system-x86 && sudo apt install novnc
+qemu-img create -f qcow2 /workspaces/RemoteVM/images/disk.qcow2 20G # creates the virt disk
