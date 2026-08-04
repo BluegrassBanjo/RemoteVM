@@ -1,0 +1,11 @@
+{
+  "name": "RemoteVM",
+  "privileged": true,
+  "runArgs": [
+    "--device=/dev/kvm"
+  ],
+  "forwardPorts": [6080, 5900],
+  "containerEnv": {
+    "QEMU_AUDIO_DRV": "none"
+  }
+}
