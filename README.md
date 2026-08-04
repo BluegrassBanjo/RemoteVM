@@ -7,7 +7,7 @@ This project was almost entirely written by AI and will probably be abandoned at
 This environment uses QEMU software emulation because KVM access is not available inside of Github codespaces.
 
 ## Files
-iso/tails-amd64-7.10.iso - downloaded Tails installation image
+iso installer/iso_download.sh - downloads the iso because Github
 images/tails.qcow2 - virtual disk for the VM
 start_tails_vm.sh - starts the VM
 stop_tails_vm.sh - stops the VM
