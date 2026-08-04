@@ -15,3 +15,6 @@ fi
 
 wget -O "$ISO_PATH" "$URL"
 echo "Downloaded Tails ISO to $ISO_PATH"
+
+sudo apt update && sudo apt install -y qemu-utils && sudo apt install -f websockify
+qemu-img create -f qcow2 /workspaces/RemoteVM/images/disk.qcow2 20G
