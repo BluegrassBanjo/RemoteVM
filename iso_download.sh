@@ -33,6 +33,8 @@ case $name in
     5)
         URL="PLACEHOLDER"
         OSNAME="hannah-montana-linux-26-1-1.iso" # microslop decieded to make the download link change
+        echo "Win11 is broken rn"
+        exit 1
         ;;
     *)
         echo "Incorrect number (Microslop made Windows not work)"
