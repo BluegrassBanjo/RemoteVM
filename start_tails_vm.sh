@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+ISO="tails-amd64-7.10.iso"
+
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ISO_DIR="$ROOT_DIR/iso"
-ISO_PATH="$ISO_DIR/tails-amd64-7.10.iso"
+ISO_PATH="$ISO_DIR/$ISO"
 IMAGE_PATH="$ROOT_DIR/images/tails.qcow2"
 LOG_PATH="$ROOT_DIR/images/tails-vm.log"
 PID_PATH="$ROOT_DIR/images/tails-vm.pid"
