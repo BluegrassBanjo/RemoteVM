@@ -51,7 +51,7 @@ QEMU transmits itself on 5900 and noVNC picks that up on 6080
 
 iso_download.sh just installs the iso and the required packages
 
-you can change the iso if you want its just the name will have to be registered in the VM
+you can change the iso if you want (covered under modding)
 
 to change the iso modify "ISO" in start_tails_vm.sh
 
