@@ -1,58 +1,102 @@
 # RemoteVM
-A local QEMU-based virtual machine setup for booting Tails from the requested ISO.
 
-## DISCLOSURE
-This project was almost entirely written by AI and will probably be abandoned at some point 
+A local QEMU-based virtual machine environment to boot Tails from a selected ISO image.
 
-DO NOT PLAN FOR CONSTANT UPDATES/FIXES if it breaks I may not fix it HOWEVER I give you my permission to modify/fix this whatever way you like
+## Disclosure
 
-This environment uses QEMU software emulation because KVM access is not available inside of Github codespaces.
+Most of this project was generated with AI.
+
+This project might not receive future updates or bug fixes.
+
+If the project does not work, I might not repair it.
+
+You have permission to modify, repair, or redistribute this project.
+
+This environment uses QEMU software emulation. It does not use KVM because GitHub Codespaces does not provide KVM access.
 
 ## Files
-iso installer/iso_download.sh - downloads the iso because Github
 
-images/tails.qcow2 - virtual disk for the VM
+**iso_download.sh**
+Downloads the Tails ISO image and installs the required packages.
 
-start_tails_vm.sh - starts the VM
+**images/tails.qcow2**
+Virtual disk image for the virtual machine.
 
-stop_tails_vm.sh - stops the VM
+**start_tails_vm.sh**
+Starts the virtual machine and the noVNC service.
+
+**stop_tails_vm.sh**
+Stops the virtual machine and closes the required services.
 
 ## Usage
-Make a Github codespace (you theroreticly can run this on a different server but this is easiest)
 
-DURING FIRST START run: 
+Create a GitHub Codespace.
 
-./iso_download.sh 
+This project can run on another Linux server. GitHub Codespaces is the recommended environment.
 
-to download the iso which isnt included due to Githubs size limit of 100MB
+### First Start
 
+Run this command:
 
-To start it:
+```bash
+./iso_download.sh
+```
 
+This command downloads the Tails ISO image.
+
+The ISO image is not included in this repository because GitHub limits repository files to 100 MB.
+
+### Start the Virtual Machine
+
+Run this command:
+
+```bash
 ./start_tails_vm.sh
+```
 
-The script starts the VM and also exposes a noVNC viewer under port 6080 (To check the VM is running look for port 5900 as these are 2 systems not 1)
+This script starts the virtual machine.
 
+It also starts a noVNC server on port **6080**.
 
-To stop it:
+The QEMU VNC server uses port **5900**.
 
+If port **5900** is active, the virtual machine is running.
+
+### Stop the Virtual Machine
+
+Run this command:
+
+```bash
 ./stop_tails_vm.sh
+```
 
-DO NOT JUST POWER OFF THE VM if you do then Github will still think you are using it untill you turn the tunnel off by this command or you run out of codespace time
+**WARNING:** Do not power off the virtual machine without running this script.
 
-## Extra stuff for modding
-There are 2 programs that work together to run this
+If you power off the virtual machine directly, GitHub Codespaces can continue to report the session as active.
 
-noVNC - port 6080 (the Browser)
+Run `./stop_tails_vm.sh` to close the services correctly.
 
-QEMU - port 5900 (the VM)
+If you do not stop the services, the Codespace can continue to use your available usage time until the tunnel closes or the Codespace stops.
 
-QEMU transmits itself on 5900 and noVNC picks that up on 6080
+## System Information
 
-iso_download.sh just installs the iso and the required packages
+The project uses two programs.
 
-you can change the iso if you want (covered under modding)
+**QEMU**
 
-to change the iso modify "ISO" in start_tails_vm.sh
+* Runs the virtual machine.
+* Uses port **5900**.
 
-feel free to mod it how you like
+**noVNC**
+
+* Provides browser access to the virtual machine.
+* Uses port **6080**.
+* Connects to the QEMU VNC server on port **5900**.
+
+## Change the ISO Image
+
+start_tails_vm.sh will request the name of the iso you wish to use.
+
+(you can upload your own into the iso dir and refference that if you want)
+
+You can modify this project as required.
