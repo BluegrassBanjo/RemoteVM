@@ -20,13 +20,19 @@ stop_tails_vm.sh - stops the VM
 ## Usage
 Make a Github codespace (you theroreticly can run this on a different server but this is easiest)
 
-DURING FIRST START run: iso_download.sh to download the iso which isnt included due to Githubs size limit of 100MB
+DURING FIRST START run: 
+
+./iso_download.sh 
+
+to download the iso which isnt included due to Githubs size limit of 100MB
+
 
 To start it:
 
 ./start_tails_vm.sh
 
 The script starts the VM and also exposes a noVNC viewer under port 6080 (To check the VM is running look for port 5900 as these are 2 systems not 1)
+
 
 To stop it:
 
@@ -44,6 +50,9 @@ QEMU - port 5900 (the VM)
 QEMU transmits itself on 5900 and noVNC picks that up on 6080
 
 iso_download.sh just installs the iso and the required packages
+
 you can change the iso if you want its just the name will have to be registered in the VM
+
+to change the iso modify "ISO" in start_tails_vm.sh
 
 feel free to mod it how you like
