@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ISO="tails-amd64-7.10.iso"
+ISO="OS.iso"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ISO_DIR="$ROOT_DIR/iso"
@@ -14,8 +14,6 @@ NOVNC_LOG_PATH="$ROOT_DIR/images/novnc.log"
 NOVNC_PORT="6080"
 VNC_HOST="127.0.0.1"
 VNC_PORT="5900"
-
-mkdir -p "$ISO_DIR" "$ROOT_DIR/images"
 
 ensure_kvm_access() {
   if [ -e /dev/kvm ]; then
