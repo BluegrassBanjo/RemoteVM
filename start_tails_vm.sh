@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ISO="OS.iso"
+read -p "Type the ISO filename exactly: " ISO
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ISO_DIR="$ROOT_DIR/iso"
@@ -30,7 +30,7 @@ ensure_kvm_access() {
 }
 
 if [ ! -f "$ISO_PATH" ]; then
-  echo "Tails ISO not found at $ISO_PATH" >&2
+  echo "ISO not found at $ISO_PATH" >&2
   echo "Run ./iso_download.sh first." >&2
   exit 1
 fi
@@ -50,7 +50,7 @@ fi
 if [ -f "$PID_PATH" ]; then
   OLD_PID="$(cat "$PID_PATH")"
   if [ -n "$OLD_PID" ] && kill -0 "$OLD_PID" 2>/dev/null; then
-    echo "A Tails VM is already running with PID $OLD_PID"
+    echo "A VM is already running with PID $OLD_PID"
     if [ -f "$NOVNC_PID_PATH" ]; then
       NOVNC_PID="$(cat "$NOVNC_PID_PATH")"
       if [ -n "$NOVNC_PID" ] && kill -0 "$NOVNC_PID" 2>/dev/null; then
@@ -75,6 +75,7 @@ CMD=(
   -vnc "$VNC_HOST:0"
   -serial mon:stdio
   -monitor none
+  -no-reboot
 )
 
 nohup "${CMD[@]}" >"$LOG_PATH" 2>&1 &
@@ -97,7 +98,7 @@ fi
 nohup websockify --web /usr/share/novnc "$NOVNC_PORT" "$VNC_HOST:$VNC_PORT" >"$NOVNC_LOG_PATH" 2>&1 &
 echo $! > "$NOVNC_PID_PATH"
 
-echo "Started Tails VM with PID $(cat "$PID_PATH")"
+echo "Started VM with PID $(cat "$PID_PATH")"
 echo "noVNC available at http://$VNC_HOST:$NOVNC_PORT/vnc.html"
 echo "Logs: $LOG_PATH"
 echo "noVNC log: $NOVNC_LOG_PATH"
