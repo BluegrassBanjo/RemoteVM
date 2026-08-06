@@ -10,7 +10,8 @@ echo "Tails Lunix 7.10: 1" # https://download.tails.net/tails/stable/tails-amd64
 echo "Ubuntu 24.04: 2 !!!BROKEN!!!" # https://releases.ubuntu.com/26.04/ubuntu-26.04-desktop-amd64.iso
 echo "Void Linux: 3" # https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso
 echo "Hannah Montana Linux: 4 !!!BROKEN!!!" # https://sourceforge.net/settings/mirror_choices?projectname=hannah-montana-linux-v26&filename=v26.1.1/hannah-montana-linux-26-1-1.iso&selected=ixpeering
-echo "Windows 11: 5 !!!BROKEN!!!" # if you find one then put it here plz
+echo "Lubuntu Linux: 5" # https://cdimage.ubuntu.com/lubuntu/releases/26.04/release/lubuntu-26.04-desktop-amd64.iso
+echo "Windows 11: 6 !!!BROKEN!!!" # if you find one then put it here plz
 read -p "What OS would you like: " name
 
 case $name in
@@ -20,7 +21,7 @@ case $name in
         ;;
     2)
         URL="https://releases.ubuntu.com/26.04/ubuntu-26.04-desktop-amd64.iso"
-        OSNAME="ubuntu-26.04-desktop-amd64.iso" # it gives a SIGTERM while booting
+        OSNAME="ubuntu-26.04-desktop-amd64.iso" # it gives a SIGTERM while booting :(
         ;;
     3)
         URL="https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso"
@@ -31,13 +32,17 @@ case $name in
         OSNAME="hannah-montana-linux-26-1-1.iso" # the download link is bad, its just here because im too lazy to change it
         ;;
     5)
+        URL="https://cdimage.ubuntu.com/lubuntu/releases/26.04/release/lubuntu-26.04-desktop-amd64.iso"
+        OSNAME="lubuntu-26.04-desktop-amd64.iso"
+        ;;
+    6)
         URL="PLACEHOLDER"
-        OSNAME="hannah-montana-linux-26-1-1.iso" # microslop decieded to make the download link change
+        OSNAME="PLACEHOLDER" # microslop decieded to make the download link change
         echo "Win11 is broken rn"
         exit 1
         ;;
     *)
-        echo "Incorrect number (Microslop made Windows not work)"
+        echo "Incorrect number"
         exit 1
         ;;
 esac
