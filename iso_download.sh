@@ -6,7 +6,7 @@ ISO_DIR="$ROOT_DIR/iso"
 
 # the iso picker
 echo "OS options:"
-echo "Tails Lunix 7.10: 1" # https://download.tails.net/tails/stable/tails-amd64-7.10/tails-amd64-7.10.iso
+echo "Tails Lunix 7.10: 1" # https://mirrors.edge.kernel.org/tails/stable/tails-amd64-7.10.1/tails-amd64-7.10.1.iso
 echo "Ubuntu 24.04: 2 !!!BROKEN!!!" # https://releases.ubuntu.com/26.04/ubuntu-26.04-desktop-amd64.iso
 echo "Void Linux: 3" # https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso
 echo "Hannah Montana Linux: 4 !!!BROKEN!!!" # https://sourceforge.net/settings/mirror_choices?projectname=hannah-montana-linux-v26&filename=v26.1.1/hannah-montana-linux-26-1-1.iso&selected=ixpeering
@@ -16,7 +16,7 @@ read -p "What OS would you like: " name
 
 case $name in
     1)
-        URL="https://download.tails.net/tails/stable/tails-amd64-7.10/tails-amd64-7.10.iso"
+        URL="https://mirrors.edge.kernel.org/tails/stable/tails-amd64-7.10.1/tails-amd64-7.10.1.iso"
         OSNAME="tails-amd64-7.10.iso"
         ;;
     2)
