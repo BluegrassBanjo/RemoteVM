@@ -32,7 +32,6 @@ Create a GitHub Codespace.
 This project can run on another Linux server. GitHub Codespaces is the recommended environment.
 
 ### First Start 
-(99% chance you wont need to do this)
 Run this command:
 
 ```bash
