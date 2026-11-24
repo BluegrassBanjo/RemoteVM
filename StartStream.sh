@@ -3,6 +3,8 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 RUNTIME_DIR="$ROOT_DIR/.run"
+NOVNC_DIR="/usr/share/novnc"
+NOVNC_WEB_DIR="$RUNTIME_DIR/novnc"
 DISPLAY_NUM=":1"
 VNC_HOST="127.0.0.1"
 VNC_PORT="5900"
@@ -27,6 +29,18 @@ if [ ! -f "$XSTARTUP_FILE" ]; then
 fi
 
 mkdir -p "$RUNTIME_DIR"
+
+if [ ! -f "$NOVNC_DIR/vnc.html" ]; then
+  echo "noVNC files are missing: $NOVNC_DIR/vnc.html" >&2
+  echo "Run ./VNCandDesktopInstaller.sh first." >&2
+  exit 1
+fi
+
+mkdir -p "$NOVNC_WEB_DIR"
+for path in "$NOVNC_DIR"/*; do
+  ln -sfn "$path" "$NOVNC_WEB_DIR/${path##*/}"
+done
+ln -sfn "$NOVNC_DIR/vnc.html" "$NOVNC_WEB_DIR/index.html"
 
 process_matches() {
   local pid="$1"
@@ -75,7 +89,7 @@ start_service "$RUNTIME_DIR/blackbox.pid" "$RUNTIME_DIR/blackbox.log" "Blackbox"
 start_service "$RUNTIME_DIR/x11vnc.pid" "$RUNTIME_DIR/x11vnc.log" "x11vnc" "x11vnc" \
   x11vnc -display "$DISPLAY_NUM" -localhost -forever -nopw -rfbport "$VNC_PORT"
 start_service "$RUNTIME_DIR/novnc.pid" "$RUNTIME_DIR/novnc.log" "noVNC" "websockify" \
-  websockify --web /usr/share/novnc "$NOVNC_PORT" "$VNC_HOST:$VNC_PORT"
+  websockify --web "$NOVNC_WEB_DIR" "$NOVNC_PORT" "$VNC_HOST:$VNC_PORT"
 
 echo "Desktop available through noVNC on port $NOVNC_PORT."
 echo "Open http://localhost:$NOVNC_PORT/vnc.html"
